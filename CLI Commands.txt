@@ -1,0 +1,199 @@
+ng new MyFirstApp
+
+path..... MyFirstApp> code .  <----- pour ouvrir avec visual code
+
+path..... MyFirstApp> ng serve --open  <----- to run project
+
+ctrl + c ---> arreter 
+
+ng test ---> run all the unit tests
+
+ng e2e --> run all the end-to-end tests
+
+
+ng --help
+
+ng --help | clip --> tout copier pour le coller qlq part
+
+ng new --help
+
+ng new App1 --dry-run (-d et alias de --dry-run)  --> Listerales dossiers qui vont etre créé mais ne créerera pas le projet App1
+
+
+ng new App1 --skip-install (ou alias -si)---> n'insallera pas les package json pour l'application  => le dossier NodeModule n'existera pas 
+
+npm install ---> pour installer les package json et créer on this case le dossier NodeModule
+
+ng new  App1 --skip-tests  (ou son alias -st )-->ne va pas créer les fichiers app.component.spec.ts ---> qui sont des fichiers de tests
+
+ng new -si -st -it ---> -it alias pour --inline-template i.e au lieu d'avoir des templateUrl il y aura des template inline dans les fichiers ts créés
+
+ng new -si -st -is ---> -is alias pour --inline-style i.e au lieu d'avoir des styleUrl il y aura des style inline dans les fichiers ts créés
+
+
+*************** Generate component ********************************************
+
+... MyApp> ng generete component abc  (ou alias ng g c abc)
+
+Explanation about angular cli configuratio file ---> vid 6
+
+
+... Pour changer le prefixe du selector qui est par defau app ------> vid 6  
+
+ng g c xyz/abc -----> generer un component xyz inside folder abc
+
+ng g c pqr --flat  ---> va generer un component dans le dosssier app mais qui ne sera contenu dans aucun dossier. 
+
+ng g c abc/aaa--flat  ---> va generer un component aaa dans le dosssier abc mais qui ne sera contenu dans aucun dossier.  
+
+ng g c sss -d ---> voir plus haut
+
+ng g c qqq -d -it -is --spec=false --> pour -d -it -is voir plus haut, pour --spec=false -->va pas créer les fichiers spec.ts
+
+
+ng g c uuu --style=scss (ou =less) ---> pour utiliser scss instead css
+
+
+*************** Generate service ********************************************
+
+ng generate service servicename or ng g s serviceName   --> generate service component but don't regiter it in module
+
+ng g s serviceName --Module==app.module (or alias -m=app.module)  --> generate service component and regiter it in module
+
+ng g s serviceName --spec=false -d 
+
+ng g s serviceName --flat=false -d  ---> va créer dossier serviceName/serviceName.service.ts
+
+
+********************* Generate module **************************************************
+
+ng generate module moduleName or ng g m moduleName ---> src/app/moduleName/moduleName.module.ts  mais ne va pas le mettre dans le root Module (Declaration array)
+
+ng g m moduleName -module=app.module (or -m=...) ---> src/app/moduleName/moduleName.module.ts  + va le mettre dans le root Module (Declaration array)
+
+ng g m customer -m=app.module -d --flat=true --spec=true  --> --flat=true pour ne pas mettre le module dans le dossier customer / --spec=true: par defaut les fichier spec.ts n'esr pas créé, si on veut le contraire on mets --spec=true
+  
+
+********************************************** Install bootstrap ***********************************************************************
+
+npm install bootstrap@3 --save
+
+Once Bootstrap is installed, open .angular-cli.json file and specify the path to the Bootstrap stylesheet in the styles property as shown below.
+
+"styles": [
+  "../node_modules/bootstrap/dist/css/bootstrap.min.css",
+  "styles.css"]
+
+
+
+
+
+************************************ Angular cli generate directives, pipes and routing guards *****************************
+
+
+ng generate directive directiveName or (ng g d directiveName)
+
+ng generate pipe pipeName 	ng g p pipeName
+
+ng generate guard guardName 	ng g g guardName
+
+Please note : When you try to generate a directive, pipe or a component, and if you have multiple modules in your angular project you may get the following error
+More than one module matches. Use skip-import option to skip importing the component into the closest module.
+
+The reason we are getting this error is we have more than one module in our angular project, so Angular CLI does not know with which module the newly generated directive, pipe or component should be registered. So we have 2 options here.
+
+* ng g d directiveName --skip-import -d  --> Use --skip-import option to tell Angular CLI not to import and register the generated component, directive or pipe   
+    
+* ng g d directiveName -m=app.module -d  --> Use --module option or it's alias -m to tell Angular CLI the module with which we want our newly generated component, directive or pipe should be registered.
+
+
+---> If you have just one module in your Angular project, then you wouldn't get this error
+
++ d'option :
+
+flat 	Specifies if a dedicated folder should be created
+module 	Specifies the module with which the newly generated angular feature should be rigstered
+spec 	Specifies if a spec file should be generated 
+
+
+**************************************  Angular cli generate class, interface and enum *****************************************
+
+
+ng generate class className or ng g cl className
+
+ng g cl employee/employee  ---> pour l'avoir dans le dossier employee
+
+
+ng g cl employee/employee --spec=true ---> By default, a spec file is not created for the class.
+
+ng generate interface interfaceName or ng g i interfaceName  --> To generate an interface use
+
+ng generate enum enumName or ng g e enumName  ---> To generate an enum use
+
+
+
+*************************************  Linting TypeScript  **************************************************
+
+ng lint  --> any linting errors 
+
+ng lint --type-check (voir video) --->   if 'no-use-before-declare' rule is enabled we need to use --type-check option with the ng lint command
+
+
+************************************* Angular tslint rules *******************************************
+
+ ---> pour sousligner les erreurs en rouge
+
+ ---> In visual code install extension tslint
+
+
+
+ng lint ----> pour trouver les erreurs 
+
+ng lint --fix ===> les réparer
+
+
+************************************* Routing ***********************************************************
+  
+
+
+ng new app --routing
+
+
+****************************************** ng serve option *************************************************************
+
+ng serve --help (or -h)
+
+
+for change to gogle chrome --> windows+r --> tape control --> choice defalt Programs  --> set your default program etc
+
+
+ng serve -o --watch false (or -w false)  ---> montreras pas les changement sur les vues opérées
+
+ng serve -o -live-reload false (or -lr)  --> pareil
+
+ng serve --port 8288 (-p) ---> changer le port
+
+
+******************************************  La suite concerne le deploiment ng build AOT JIT ...etc (voir videos c super interessant)****************************************************
+
+generate folder 'dist' scpecifier dans agular.json  ----> voir video
+
+
+ng build --dev
+
+ng build --prod
+
+......
+
+
+
+
+
+
+
+
+
+
+
+
+
